@@ -38,6 +38,18 @@ class MoviesTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 175
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toDetailVC" {
+            guard let detailVC = segue.destination as? MovieDetailViewController else { return }
+            guard let selectedIndex = tableView.indexPathForSelectedRow else { return }
+            guard let selectedCell = tableView.cellForRow(at: selectedIndex) as? MovieTableViewCell else { return }
+            let movie = movies[selectedIndex.row]
+            
+            detailVC.movie = movie
+            detailVC.movieImage = selectedCell.posterImageView.image ?? UIImage(named: "noPosterImage")
+        }
+    }
 }
 
 extension MoviesTableViewController: UISearchBarDelegate {

@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -32,7 +33,7 @@
                             </constraints>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="movieCellId" rowHeight="208" id="hWm-V2-RFO" customClass="MovieTableViewCell" customModule="MovieSearch" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="movieCellId" rowHeight="208" id="hWm-V2-RFO" customClass="MovieTableViewCell" customModule="MovieSearch" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="72" width="414" height="208"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hWm-V2-RFO" id="QH0-jG-0Mn">
@@ -90,6 +91,7 @@
                                     <outlet property="posterImageView" destination="Pdx-qq-HQX" id="GHR-0P-0Yd"/>
                                     <outlet property="ratingLabel" destination="d2A-qS-yaY" id="HdJ-aR-4fO"/>
                                     <outlet property="titleLabel" destination="zR5-K8-6Ne" id="Ppp-X9-UFS"/>
+                                    <segue destination="jUq-ac-gzE" kind="show" identifier="toDetailVC" id="5xW-8v-5SV"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -106,6 +108,78 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vIs-fO-3QG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1214.4927536231885" y="89.732142857142847"/>
+        </scene>
+        <!--Movie Detail View Controller-->
+        <scene sceneID="KBl-Iu-28S">
+            <objects>
+                <viewController id="jUq-ac-gzE" customClass="MovieDetailViewController" customModule="MovieSearch" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7rB-BY-Qbj">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="U5p-Zk-fro">
+                                <rect key="frame" x="157" y="128" width="100" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="NFZ-1C-Zs7"/>
+                                    <constraint firstAttribute="width" constant="100" id="w5r-ks-Ami"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lRg-uX-qeF">
+                                <rect key="frame" x="20" y="286" width="374" height="24"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Release Date Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zqm-IH-a0H">
+                                <rect key="frame" x="0.0" y="318" width="414" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Popularity Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="peW-aQ-OiP">
+                                <rect key="frame" x="0.0" y="344" width="414" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Overview label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jLS-sl-YGO">
+                                <rect key="frame" x="20" y="380" width="374" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="jLS-sl-YGO" firstAttribute="leading" secondItem="Oqd-5e-gWG" secondAttribute="leading" constant="20" id="0ZP-S8-ERS"/>
+                            <constraint firstItem="U5p-Zk-fro" firstAttribute="centerX" secondItem="7rB-BY-Qbj" secondAttribute="centerX" id="3eV-cl-KAg"/>
+                            <constraint firstItem="lRg-uX-qeF" firstAttribute="leading" secondItem="Oqd-5e-gWG" secondAttribute="leading" constant="20" id="BFZ-bD-KJ1"/>
+                            <constraint firstItem="Oqd-5e-gWG" firstAttribute="trailing" secondItem="peW-aQ-OiP" secondAttribute="trailing" id="C3Y-9f-2KA"/>
+                            <constraint firstItem="jLS-sl-YGO" firstAttribute="top" secondItem="peW-aQ-OiP" secondAttribute="bottom" constant="15" id="C8B-hf-Ym1"/>
+                            <constraint firstItem="Zqm-IH-a0H" firstAttribute="top" secondItem="lRg-uX-qeF" secondAttribute="bottom" constant="8" id="Jwb-Bt-Ekp"/>
+                            <constraint firstItem="Oqd-5e-gWG" firstAttribute="trailing" secondItem="Zqm-IH-a0H" secondAttribute="trailing" id="Ktg-Ms-2ok"/>
+                            <constraint firstItem="Oqd-5e-gWG" firstAttribute="trailing" secondItem="jLS-sl-YGO" secondAttribute="trailing" constant="20" id="gFL-qu-zVD"/>
+                            <constraint firstItem="Zqm-IH-a0H" firstAttribute="leading" secondItem="Oqd-5e-gWG" secondAttribute="leading" id="mgH-Sg-xii"/>
+                            <constraint firstItem="Oqd-5e-gWG" firstAttribute="trailing" secondItem="lRg-uX-qeF" secondAttribute="trailing" constant="20" id="nYo-RQ-VUG"/>
+                            <constraint firstItem="U5p-Zk-fro" firstAttribute="top" secondItem="Oqd-5e-gWG" secondAttribute="top" constant="40" id="nen-uy-yu8"/>
+                            <constraint firstItem="peW-aQ-OiP" firstAttribute="leading" secondItem="Oqd-5e-gWG" secondAttribute="leading" id="sb0-ur-Pgt"/>
+                            <constraint firstItem="lRg-uX-qeF" firstAttribute="top" secondItem="U5p-Zk-fro" secondAttribute="bottom" constant="8" id="tNy-Ng-hxl"/>
+                            <constraint firstItem="peW-aQ-OiP" firstAttribute="top" secondItem="Zqm-IH-a0H" secondAttribute="bottom" constant="5" id="yVZ-9j-vzW"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Oqd-5e-gWG"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Yul-Ua-RZr"/>
+                    <connections>
+                        <outlet property="overviewLabel" destination="jLS-sl-YGO" id="HIn-Im-AAO"/>
+                        <outlet property="popularityLabel" destination="peW-aQ-OiP" id="Q3a-qU-SVO"/>
+                        <outlet property="posterImageView" destination="U5p-Zk-fro" id="yRu-ZT-2zY"/>
+                        <outlet property="releaseDateLabel" destination="Zqm-IH-a0H" id="BSH-Yv-GJ3"/>
+                        <outlet property="titleLabel" destination="lRg-uX-qeF" id="ee3-xa-Z1N"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zxw-Mg-jaA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1946" y="86"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="qU4-mZ-eWg">
