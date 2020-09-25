@@ -148,16 +148,32 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w6a-l6-4hd">
+                                <rect key="frame" x="40" y="718" width="334" height="75"/>
+                                <color key="backgroundColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="75" id="k0r-ZS-0Eh"/>
+                                </constraints>
+                                <state key="normal" title="Favorite this movie">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="favoriteButtonTapped:" destination="jUq-ac-gzE" eventType="touchUpInside" id="lkJ-wt-6DX"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="Oqd-5e-gWG" firstAttribute="bottom" secondItem="w6a-l6-4hd" secondAttribute="bottom" constant="20" id="0NO-hg-Izf"/>
                             <constraint firstItem="jLS-sl-YGO" firstAttribute="leading" secondItem="Oqd-5e-gWG" secondAttribute="leading" constant="20" id="0ZP-S8-ERS"/>
+                            <constraint firstItem="Oqd-5e-gWG" firstAttribute="trailing" secondItem="w6a-l6-4hd" secondAttribute="trailing" constant="40" id="1BH-Su-HAg"/>
                             <constraint firstItem="U5p-Zk-fro" firstAttribute="centerX" secondItem="7rB-BY-Qbj" secondAttribute="centerX" id="3eV-cl-KAg"/>
                             <constraint firstItem="lRg-uX-qeF" firstAttribute="leading" secondItem="Oqd-5e-gWG" secondAttribute="leading" constant="20" id="BFZ-bD-KJ1"/>
                             <constraint firstItem="Oqd-5e-gWG" firstAttribute="trailing" secondItem="peW-aQ-OiP" secondAttribute="trailing" id="C3Y-9f-2KA"/>
                             <constraint firstItem="jLS-sl-YGO" firstAttribute="top" secondItem="peW-aQ-OiP" secondAttribute="bottom" constant="15" id="C8B-hf-Ym1"/>
                             <constraint firstItem="Zqm-IH-a0H" firstAttribute="top" secondItem="lRg-uX-qeF" secondAttribute="bottom" constant="8" id="Jwb-Bt-Ekp"/>
                             <constraint firstItem="Oqd-5e-gWG" firstAttribute="trailing" secondItem="Zqm-IH-a0H" secondAttribute="trailing" id="Ktg-Ms-2ok"/>
+                            <constraint firstItem="w6a-l6-4hd" firstAttribute="leading" secondItem="Oqd-5e-gWG" secondAttribute="leading" constant="40" id="eAc-un-QL1"/>
                             <constraint firstItem="Oqd-5e-gWG" firstAttribute="trailing" secondItem="jLS-sl-YGO" secondAttribute="trailing" constant="20" id="gFL-qu-zVD"/>
                             <constraint firstItem="Zqm-IH-a0H" firstAttribute="leading" secondItem="Oqd-5e-gWG" secondAttribute="leading" id="mgH-Sg-xii"/>
                             <constraint firstItem="Oqd-5e-gWG" firstAttribute="trailing" secondItem="lRg-uX-qeF" secondAttribute="trailing" constant="20" id="nYo-RQ-VUG"/>
@@ -168,8 +184,11 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Oqd-5e-gWG"/>
                     </view>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" id="Yul-Ua-RZr"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="favoriteButton" destination="w6a-l6-4hd" id="CGh-qD-t1z"/>
                         <outlet property="overviewLabel" destination="jLS-sl-YGO" id="HIn-Im-AAO"/>
                         <outlet property="popularityLabel" destination="peW-aQ-OiP" id="Q3a-qU-SVO"/>
                         <outlet property="posterImageView" destination="U5p-Zk-fro" id="yRu-ZT-2zY"/>

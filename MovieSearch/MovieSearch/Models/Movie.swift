@@ -12,7 +12,7 @@ struct TopLevelDictionary: Decodable {
     let results: [Movie]
 }
 
-struct Movie: Decodable {
+struct Movie: Codable {
     let id: Int
     let title: String
     let overview: String
@@ -30,4 +30,12 @@ struct Movie: Decodable {
         case posterImagePath = "poster_path"
         case popularity = "popularity"
     }
+}
+
+extension Movie: Equatable {}
+
+func ==(lhs: Movie, rhs: Movie) -> Bool {
+    return lhs.id == rhs.id &&
+        lhs.title == rhs.title &&
+        lhs.overview == rhs.overview
 }

@@ -15,9 +15,12 @@ class MovieDetailViewController: UIViewController {
     @IBOutlet weak var releaseDateLabel: UILabel!
     @IBOutlet weak var popularityLabel: UILabel!
     @IBOutlet weak var overviewLabel: UILabel!
+    @IBOutlet weak var favoriteButton: UIButton!
     
     var movie: Movie?
     var movieImage: UIImage?
+    
+    let movieController = MovieController.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +40,26 @@ class MovieDetailViewController: UIViewController {
             posterImageView.image = movieImage
         } else {
             posterImageView.image = UIImage(named: "noPosterImage")
+        }
+        
+        if movieController.favoriteMovies.contains(movie) {
+            favoriteButton.setTitle("Unfavorite this movie", for: .normal)
+        } else {
+            favoriteButton.setTitle("Favorite this movie", for: .normal)
+        }
+        
+        favoriteButton.layer.masksToBounds = true
+        favoriteButton.layer.cornerRadius = 75/2
+    }
+    
+    @IBAction func favoriteButtonTapped(_ sender: Any) {
+        guard let movie = movie else { return }
+        if movieController.favoriteMovies.contains(movie) {
+            movieController.unfavoriteMovie(movie: movie)
+            favoriteButton.setTitle("Favorite this movie", for: .normal)
+        } else {
+            movieController.favoriteMovie(movie: movie)
+            favoriteButton.setTitle("Unfavorite this movie", for: .normal)
         }
     }
 }

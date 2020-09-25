@@ -11,6 +11,10 @@ import UIKit.UIImage
 
 class MovieController {
     
+    static let shared = MovieController()
+    
+    var favoriteMovies: [Movie] = []
+    
     struct StringConstants {
         fileprivate static let apiKey = "ec1e4f4dc2af22e07876dbacf423ecd9"
         
@@ -26,6 +30,8 @@ class MovieController {
         fileprivate static let queryParam = "query"
         fileprivate static let apiKeyParam = "api_key"
     }
+    
+    //MARK: - API Calls
     
     static func searchMovies(searchText: String, completion: @escaping (Result <[Movie], MovieServiceError>) -> Void) {
         //URL Setup
@@ -77,5 +83,54 @@ class MovieController {
                 completion(.success(image))
             }
         }.resume()
+    }
+    
+    //Handling Favoriting Movies
+    func favoriteMovie(movie: Movie) {
+        favoriteMovies.append(movie)
+        saveToPersistentStore()
+    }
+    
+    func unfavoriteMovie(movie: Movie) {
+        guard let indexOfMovie = favoriteMovies.firstIndex(of: movie) else { return }
+        favoriteMovies.remove(at: indexOfMovie)
+        saveToPersistentStore()
+    }
+    
+    //MARK: - Persistence
+    
+    //Get the url where we are saving our data
+    func fileURL() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let documentDirectory = paths[0]
+        let filename = "favoriteMovies.json"
+        let fullURL = documentDirectory.appendingPathComponent(filename)
+        
+        return fullURL
+    }
+    
+    //Save the data at that url
+    func saveToPersistentStore() {
+        let encoder = JSONEncoder()
+        
+        do {
+            let data = try encoder.encode(favoriteMovies)
+            try data.write(to: fileURL())
+        } catch let error {
+            print("Error saving playlist: \(error.localizedDescription)")
+        }
+    }
+    
+    //Fetch the data from the url
+    func loadFromPersistentStore() {
+        let decoder = JSONDecoder()
+        
+        do {
+            let data = try Data(contentsOf: fileURL())
+            let favoriteMovies = try decoder.decode([Movie].self, from: data)
+            self.favoriteMovies = favoriteMovies
+        } catch let error {
+            print("Error loading from storage: \(error.localizedDescription)")
+        }
     }
 }
