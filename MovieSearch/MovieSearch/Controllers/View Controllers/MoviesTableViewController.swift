@@ -10,10 +10,13 @@ import UIKit
 
 class MoviesTableViewController: UITableViewController {
     
+    //MARK: - Outlets
     @IBOutlet weak var movieSearchBar: UISearchBar!
     
+    //MARK: - Properties
     var movies: [Movie] = []
     
+    //MARK: - Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -22,6 +25,7 @@ class MoviesTableViewController: UITableViewController {
         tableView.tableFooterView = UIView()
     }
     
+    //MARK: - TableView Delegate Functions
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return movies.count
     }
@@ -39,6 +43,7 @@ class MoviesTableViewController: UITableViewController {
         return 175
     }
     
+    //MARK: - Segue Prep
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toDetailVC" {
             guard let detailVC = segue.destination as? MovieDetailViewController else { return }
@@ -52,6 +57,7 @@ class MoviesTableViewController: UITableViewController {
     }
 }
 
+//MARK: - Search Bar Delegate
 extension MoviesTableViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {

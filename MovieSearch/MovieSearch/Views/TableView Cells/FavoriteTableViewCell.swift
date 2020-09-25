@@ -1,5 +1,5 @@
 //
-//  MovieTableViewCell.swift
+//  FavoriteTableViewCell.swift
 //  MovieSearch
 //
 //  Created by Jordan Bryant on 9/25/20.
@@ -8,12 +8,11 @@
 
 import UIKit
 
-class MovieTableViewCell: UITableViewCell {
+class FavoriteTableViewCell: UITableViewCell {
     
     //MARK: - Outlets
     @IBOutlet weak var posterImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var ratingLabel: UILabel!
     @IBOutlet weak var overviewLabel: UILabel!
     
     //MARK: - Properties
@@ -28,7 +27,6 @@ class MovieTableViewCell: UITableViewCell {
         guard let movie = movie else { return }
         
         titleLabel.text = movie.title
-        ratingLabel.text = "Rating: \(movie.rating)"
         overviewLabel.text = movie.overview
         
         posterImageView.image = nil
@@ -46,6 +44,5 @@ class MovieTableViewCell: UITableViewCell {
         } else {
             posterImageView.image = UIImage(named: "noPosterImage")
         }
-        
     }
 }

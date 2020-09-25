@@ -10,6 +10,7 @@ import UIKit
 
 class MovieDetailViewController: UIViewController {
     
+    //MARK: - Outlets
     @IBOutlet weak var posterImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var releaseDateLabel: UILabel!
@@ -17,17 +18,20 @@ class MovieDetailViewController: UIViewController {
     @IBOutlet weak var overviewLabel: UILabel!
     @IBOutlet weak var favoriteButton: UIButton!
     
+    //MARK: - Properties
     var movie: Movie?
     var movieImage: UIImage?
     
     let movieController = MovieController.shared
     
+    //MARK: - Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         
         updateViews()
     }
     
+    //MARK: - Updating Views
     private func updateViews() {
         guard let movie = movie else { return }
         
@@ -52,6 +56,7 @@ class MovieDetailViewController: UIViewController {
         favoriteButton.layer.cornerRadius = 75/2
     }
     
+    //MARK: - Actions
     @IBAction func favoriteButtonTapped(_ sender: Any) {
         guard let movie = movie else { return }
         if movieController.favoriteMovies.contains(movie) {

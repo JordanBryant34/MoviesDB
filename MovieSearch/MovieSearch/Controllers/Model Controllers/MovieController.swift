@@ -10,7 +10,7 @@ import Foundation
 import UIKit.UIImage
 
 class MovieController {
-    
+
     static let shared = MovieController()
     
     var favoriteMovies: [Movie] = []
@@ -32,7 +32,6 @@ class MovieController {
     }
     
     //MARK: - API Calls
-    
     static func searchMovies(searchText: String, completion: @escaping (Result <[Movie], MovieServiceError>) -> Void) {
         //URL Setup
         guard let url = URL(string: StringConstants.baseUrl) else { return completion(.failure(.invalidURL)) }
@@ -85,7 +84,7 @@ class MovieController {
         }.resume()
     }
     
-    //Handling Favoriting Movies
+    //MARK: - Favoriting Movies
     func favoriteMovie(movie: Movie) {
         favoriteMovies.append(movie)
         saveToPersistentStore()
